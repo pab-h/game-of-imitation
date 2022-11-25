@@ -6,4 +6,10 @@ Trabalho final da diciplina de programação computacional
 
 ### Com o GCC
 
-```gcc ./app.c ./source/*.c -o ./bin/app.out```
+#### Linux
+
+```gcc ./app.c  -o ./bin/app.out```
+
+#### Windows
+
+```gcc ./app.c  -o ./bin/app.exe```
