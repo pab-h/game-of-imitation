@@ -2,11 +2,26 @@
 * Segundo requirements.pdf, o máximo tamanho
 * de uma string será 100
 */
-#define MAX_STRING_LENGHT 100
+#define TAMANHO_MAXIMO_STRING 100
 
 #include <locale.h>
 #include <stdio.h>
+#include <ctype.h>
 #include <string.h>
+
+int validaTexto(char *texto) {
+
+    while (*texto != '\0') {
+
+        if (!isalpha(*texto) && !isspace(*texto)) {
+            return 0;
+        }
+
+        texto++;
+    }
+
+    return 1;
+}
 
 void codificaTexto(char *texto, char *textoCodificado, const int deslocamento) {
 
@@ -34,27 +49,34 @@ void decodificaTexto(char *textoCodificado, char *texto, const int deslocamento)
 
 }
 
-void teste() {
-    char texto[] = "voce acertou";
-    char textoCodificado[strlen(texto)];
+int teste() {
+    char texto[TAMANHO_MAXIMO_STRING];
+
+    printf("Digite um string para testar!\n>>>");
+    fgets(texto, TAMANHO_MAXIMO_STRING, stdin);
+    texto[strcspn(texto, "\n")] = 0;
+
+    if (validaTexto(texto)) {
+        printf("O texto \"%s\" é válido!\n", texto);
+    } else {
+        printf("O texto \"%s\" não é válido!\n", texto);
+
+        return 1; 
+    }
+
+    char textoCodificado[TAMANHO_MAXIMO_STRING];
 
     codificaTexto(texto, textoCodificado, 5);
 
-    printf("Original: %s\n", texto);
-    printf("Codificado: %s\n", textoCodificado);
+    printf("O texto original é \"%s\"\n", texto);
+    printf("O texto codificado é \"%s\"\n", textoCodificado);
 
-    char textoDecodificado[strlen(texto)];
-
-    decodificaTexto(textoCodificado, textoDecodificado, 5);
-
-    printf("Decodificado: %s\n", textoDecodificado);
+    return 0;
 }
 
 int main() {
 
     setlocale(LC_ALL, "");
     
-    teste();
-
-    return 0;
+    return teste();
 }
