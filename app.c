@@ -96,8 +96,14 @@ void decodificaTexto(char *textoCodificado, char *texto, const int deslocamento)
 
 int teste() {
 
+        // char texto[TAMANHO_MAXIMO_STRING];
+
+    // printf("Digite um string para testar!\n>>>");
+    // fgets(texto, TAMANHO_MAXIMO_STRING, stdin);
+    // texto[strcspn(texto, "\n")] = 0;
+
     salvaResultado("Bom dia", "shauehasuhe", 26);
-    
+
     return 0;
 }
 
