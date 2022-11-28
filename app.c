@@ -3,11 +3,16 @@
 * de uma string será 100
 */
 #define TAMANHO_MAXIMO_STRING 100
+#define TAMANHO_MAXIMO_CHAVE 26
 
 #include <locale.h>
 #include <stdio.h>
 #include <ctype.h>
 #include <string.h>
+
+int validaChave(int chave) {
+    return chave >= 1 && chave <= TAMANHO_MAXIMO_CHAVE;
+}
 
 void caixaBaixaTexto(char *texto) {
 
@@ -61,14 +66,14 @@ void decodificaTexto(char *textoCodificado, char *texto, const int deslocamento)
 
 int teste() {
     char texto[TAMANHO_MAXIMO_STRING];
+    int chave; 
 
-    printf("Digite um string para testar!\n>>>");
-    fgets(texto, TAMANHO_MAXIMO_STRING, stdin);
-    texto[strcspn(texto, "\n")] = 0;
+    printf("Digite uma chave: \n>>>");
+    scanf("%d", &chave);
 
-    printf("Texto original: %s\n", texto);
-    caixaBaixaTexto(texto);
-    printf("Texto em caixa baixa: %s\n", texto);
+    validaChave(chave) ?
+        printf("A chave %d é válida!", chave) :
+        printf("A chave %d não é válida!", chave);
 
 
     return 0;
