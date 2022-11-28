@@ -4,11 +4,41 @@
 */
 #define TAMANHO_MAXIMO_STRING 100
 #define TAMANHO_MAXIMO_CHAVE 26
+#define ARQUIVO_RESULTADOS "./resultados.fernando"
 
 #include <locale.h>
 #include <stdio.h>
 #include <ctype.h>
 #include <string.h>
+
+void salvaResultado(char *texto, char *textoCodificado, const int deslocamento) {
+    FILE *arquivo;
+
+    arquivo = fopen(ARQUIVO_RESULTADOS, "a");
+    
+    if (arquivo == NULL) {
+        arquivo = fopen(ARQUIVO_RESULTADOS, "w");
+    }
+
+    fputs("Texto original: ", arquivo);
+    fputs(texto, arquivo);
+    fputs("\n", arquivo);
+
+    fputs("Texto codificado: ", arquivo);
+    fputs(textoCodificado, arquivo);
+    fputs("\n", arquivo);
+
+    fputs("Chave: ", arquivo);
+    char chave[2]; 
+    snprintf(chave, 3, "%d", deslocamento);
+    fputs(chave, arquivo);
+    fputs("\n", arquivo);
+
+    fputs("+++++++++++++++++++++\n", arquivo);
+
+    fclose(arquivo);
+
+}
 
 int validaChave(int chave) {
     return chave >= 1 && chave <= TAMANHO_MAXIMO_CHAVE;
@@ -65,17 +95,9 @@ void decodificaTexto(char *textoCodificado, char *texto, const int deslocamento)
 }
 
 int teste() {
-    char texto[TAMANHO_MAXIMO_STRING];
-    int chave; 
 
-    printf("Digite uma chave: \n>>>");
-    scanf("%d", &chave);
-
-    validaChave(chave) ?
-        printf("A chave %d é válida!", chave) :
-        printf("A chave %d não é válida!", chave);
-
-
+    salvaResultado("Bom dia", "shauehasuhe", 26);
+    
     return 0;
 }
 
