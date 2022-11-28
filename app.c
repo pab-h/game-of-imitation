@@ -9,6 +9,16 @@
 #include <ctype.h>
 #include <string.h>
 
+void caixaBaixaTexto(char *texto) {
+
+    while (*texto != '\0') {
+        *texto = tolower(*texto);
+
+        texto++;
+    }
+
+}
+
 int validaTexto(char *texto) {
 
     while (*texto != '\0') {
@@ -56,20 +66,10 @@ int teste() {
     fgets(texto, TAMANHO_MAXIMO_STRING, stdin);
     texto[strcspn(texto, "\n")] = 0;
 
-    if (validaTexto(texto)) {
-        printf("O texto \"%s\" é válido!\n", texto);
-    } else {
-        printf("O texto \"%s\" não é válido!\n", texto);
+    printf("Texto original: %s\n", texto);
+    caixaBaixaTexto(texto);
+    printf("Texto em caixa baixa: %s\n", texto);
 
-        return 1; 
-    }
-
-    char textoCodificado[TAMANHO_MAXIMO_STRING];
-
-    codificaTexto(texto, textoCodificado, 5);
-
-    printf("O texto original é \"%s\"\n", texto);
-    printf("O texto codificado é \"%s\"\n", textoCodificado);
 
     return 0;
 }
