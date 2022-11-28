@@ -4,7 +4,7 @@
 */
 #define TAMANHO_MAXIMO_STRING 100
 #define TAMANHO_MAXIMO_CHAVE 26
-#define ARQUIVO_RESULTADOS "./resultados.fernando"
+#define ARQUIVO_RESULTADOS "./resultados.txt"
 
 #include <locale.h>
 #include <stdio.h>
