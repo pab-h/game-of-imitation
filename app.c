@@ -107,8 +107,8 @@ void menu() {
 
 void loop() {
     char escolha;
-    char texto[TAMANHO_MAXIMO_STRING];
-    char textoCodificado[TAMANHO_MAXIMO_STRING];
+    char texto[TAMANHO_MAXIMO_STRING + 1];
+    char textoCodificado[TAMANHO_MAXIMO_STRING + 1];
     int deslocamento;
 
     do {
@@ -116,18 +116,30 @@ void loop() {
         menu();
 
         printf("Digite a sua escolha: \n>>>");
-        scanf(" %c", &escolha);
-        fflush(stdin);
+        scanf("%c", &escolha);
+        fgetc(stdin);
         escolha = tolower(escolha);
 
         if (escolha == 'a') {
             printf("Digite um texto para codificar:\n>>>");
             scanf(" %s", texto);
-            fflush(stdin);
-        
+            fgets(texto, TAMANHO_MAXIMO_STRING, stdin);
+            texto[strlen(texto) - 1] = 0;
+
             printf("Digite o deslocamento:\n>>>");
-            scanf(" %d", &deslocamento);
-            fflush(stdin);
+            scanf("%d", &deslocamento);
+            fgetc(stdin);
+        }
+
+        if (escolha == 'b') {
+            printf("Digite o texto codificado:\n>>>");
+            scanf(" %s", textoCodificado);
+            fgets(textoCodificado, TAMANHO_MAXIMO_STRING, stdin);
+            textoCodificado[strlen(textoCodificado) - 1] = 0;
+
+            printf("Digite o deslocamento:\n>>>");
+            scanf("%d", &deslocamento);
+            fgetc(stdin);
         }
         
     } while (escolha != 'c');
