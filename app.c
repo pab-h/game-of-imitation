@@ -3,7 +3,7 @@
 * de uma string será 100
 */
 #define TAMANHO_MAXIMO_STRING 100
-#define TAMANHO_MAXIMO_CHAVE 26
+#define TAMANHO_MAXIMO_DESLOCAMENTO 26
 #define ARQUIVO_RESULTADOS "./resultados.txt"
 
 #include <locale.h>
@@ -40,8 +40,8 @@ void salvaResultado(char *texto, char *textoCodificado, const int deslocamento) 
 
 }
 
-int validaChave(int chave) {
-    return chave >= 1 && chave <= TAMANHO_MAXIMO_CHAVE;
+int validaDeslocamento(int deslocamento) {
+    return deslocamento >= 1 && deslocamento <= TAMANHO_MAXIMO_DESLOCAMENTO;
 }
 
 void caixaBaixaTexto(char *texto) {
@@ -94,9 +94,48 @@ void decodificaTexto(char *textoCodificado, char *texto, const int deslocamento)
 
 }
 
+void menu() {
+    printf("======MENU======\n");
+
+    printf("A. Codificar string com chave;\n");
+    printf("B. Decodificar string com chave;\n");
+    printf("C. Sair;\n");
+
+    printf("================\n");
+
+}
+
+void loop() {
+    char escolha;
+    char texto[TAMANHO_MAXIMO_STRING];
+    char textoCodificado[TAMANHO_MAXIMO_STRING];
+    int deslocamento;
+
+    do {
+
+        menu();
+
+        printf("Digite a sua escolha: \n>>>");
+        scanf(" %c", &escolha);
+        fflush(stdin);
+        escolha = tolower(escolha);
+
+        if (escolha == 'a') {
+            printf("Digite um texto para codificar:\n>>>");
+            scanf(" %s", texto);
+            fflush(stdin);
+        
+            printf("Digite o deslocamento:\n>>>");
+            scanf(" %d", &deslocamento);
+            fflush(stdin);
+        }
+        
+    } while (escolha != 'c');
+}
+
 int teste() {
 
-    salvaResultado("Bom dia", "shauehasuhe", 26);
+    loop();
 
     return 0;
 }
