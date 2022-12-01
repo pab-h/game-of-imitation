@@ -112,7 +112,7 @@ void decodificaTexto(char *textoCodificado, char *texto, const int deslocamento)
 
 }
 
-void menu() {
+void mostraMenu() {
     printf("======MENU======\n");
 
     printf("A. Codificar string com chave;\n");
@@ -141,7 +141,7 @@ void loop() {
     int deslocamento;
 
     while (1) {
-        menu();
+        mostraMenu();
 
         printf("Digite a sua escolha: \n>>>");
         scanf(" %c", &escolha);
