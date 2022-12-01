@@ -123,7 +123,7 @@ void mostraMenu() {
 
 }
 
-void ajuda() {
+void mostraAjuda() {
     printf("======AJUDA======\n");
     printf("Lembre-se: O deslocamente deve estar entre 1 e 26;\n");
     printf("Lembre-se: Os textos pedidos devem ter no máximo 100 caracteres;\n");
@@ -165,7 +165,7 @@ void loop() {
 
             if (!validaTexto(texto)) {
                 printf("[Erro] O texto \"%s\" não é válido!\n", texto);
-                ajuda();
+                mostraAjuda();
 
                 continue;
             }
@@ -178,7 +178,7 @@ void loop() {
 
             if (!validaDeslocamento(deslocamento)) {
                 printf("[Erro] O deslocamento \"%d\" não é válido!\n", deslocamento);
-                ajuda();
+                mostraAjuda();
 
                 continue;
             }
@@ -198,7 +198,7 @@ void loop() {
 
             if (!validaDeslocamento(deslocamento)) {
                 printf("[Erro] O deslocamento \"%d\" não é válido!\n", deslocamento);
-                ajuda();
+                mostraAjuda();
 
                 continue;
             }
