@@ -111,14 +111,17 @@ void loop() {
     char textoCodificado[TAMANHO_MAXIMO_STRING + 1];
     int deslocamento;
 
-    do {
-
+    while (1) {
         menu();
 
         printf("Digite a sua escolha: \n>>>");
         scanf("%c", &escolha);
         fgetc(stdin);
         escolha = tolower(escolha);
+
+        if (escolha == 'c') {
+            break;
+        }
 
         if (escolha == 'a') {
             printf("Digite um texto para codificar:\n>>>");
@@ -141,15 +144,6 @@ void loop() {
 
             codificaTexto(texto, textoCodificado, deslocamento);
 
-            salvaResultado(texto, textoCodificado, deslocamento);
-
-            printf("----Resultado----\n");
-            printf("Texto original: %s\n", texto);
-            printf("Texto codificado: %s\n", textoCodificado);
-            printf("Deslocamento: %d\n", deslocamento);
-            printf("Obs: Os resultados foram gravados em %s\n", ARQUIVO_RESULTADOS);
-            printf("-----------------\n");
-
         }
 
         if (escolha == 'b') {
@@ -167,22 +161,22 @@ void loop() {
             }
             
             decodificaTexto(textoCodificado, texto, deslocamento);
-
-            salvaResultado(texto, textoCodificado, deslocamento);
-
-            printf("----Resultado----\n");
-            printf("Texto original: %s\n", texto);
-            printf("Texto codificado: %s\n", textoCodificado);
-            printf("Deslocamento: %d\n", deslocamento);
-            printf("Obs: Os resultados foram gravados em %s\n", ARQUIVO_RESULTADOS);
-            printf("-----------------\n");
-
         }
+
+        salvaResultado(texto, textoCodificado, deslocamento);
+
+        printf("----Resultado----\n");
+        printf("Texto original: %s\n", texto);
+        printf("Texto codificado: %s\n", textoCodificado);
+        printf("Deslocamento: %d\n", deslocamento);
+        printf("Obs: Os resultados foram gravados em %s\n", ARQUIVO_RESULTADOS);
+        printf("-----------------\n");
 
         memset(texto, 0, TAMANHO_MAXIMO_STRING);
         memset(textoCodificado, 0, TAMANHO_MAXIMO_STRING);
 
-    } while (escolha != 'c');
+    }
+
 }
 
 int teste() {
