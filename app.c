@@ -143,6 +143,8 @@ void loop() {
                 continue;
             }
 
+            caixaBaixaTexto(texto);
+
             printf("Digite o deslocamento:\n>>>");
             scanf("%d", &deslocamento);
             fgetc(stdin);
