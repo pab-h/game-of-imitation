@@ -21,6 +21,7 @@ int validaTexto(char *texto) {
         }
 
         texto++;
+
     }
 
     return 1;
@@ -36,8 +37,8 @@ int validaEscolha(char escolha, char *escolhasValidas) {
 
         escolhasValidas++;
         i++;
-    }
 
+    }
 
     return 0;
 }
@@ -49,6 +50,7 @@ void salvaResultado(char *texto, char *textoCodificado, const int deslocamento) 
     
     if (arquivo == NULL) {
         arquivo = fopen(ARQUIVO_RESULTADOS, "w");
+
     }
 
     fputs("Texto original: ", arquivo);
@@ -77,6 +79,7 @@ void caixaBaixaTexto(char *texto) {
         *texto = tolower(*texto);
 
         texto++;
+
     }
 
 }
@@ -88,6 +91,7 @@ void codificaTexto(char *texto, char *textoCodificado, const int deslocamento) {
 
         texto++;
         textoCodificado++;
+
     }
 
     *textoCodificado = '\0';
@@ -101,6 +105,7 @@ void decodificaTexto(char *textoCodificado, char *texto, const int deslocamento)
 
         texto++;
         textoCodificado++;
+
     }
 
     *texto = '\0';
@@ -145,6 +150,7 @@ void loop() {
 
         if (!validaEscolha(escolha, escolhasValidas)) {
             printf("[Erro] A escolha \"%c\" não é válida!\n", escolha);
+
             continue;
         }
 
@@ -160,6 +166,7 @@ void loop() {
             if (!validaTexto(texto)) {
                 printf("[Erro] O texto \"%s\" não é válido!\n", texto);
                 ajuda();
+
                 continue;
             }
 
@@ -172,6 +179,7 @@ void loop() {
             if (!validaDeslocamento(deslocamento)) {
                 printf("[Erro] O deslocamento \"%d\" não é válido!\n", deslocamento);
                 ajuda();
+
                 continue;
             }
 
@@ -191,10 +199,12 @@ void loop() {
             if (!validaDeslocamento(deslocamento)) {
                 printf("[Erro] O deslocamento \"%d\" não é válido!\n", deslocamento);
                 ajuda();
+
                 continue;
             }
             
             decodificaTexto(textoCodificado, texto, deslocamento);
+
         }
 
         salvaResultado(texto, textoCodificado, deslocamento);
@@ -213,9 +223,7 @@ void loop() {
 
 }
 
-
 int main() {
-
     setlocale(LC_ALL, "");
     
     loop();
