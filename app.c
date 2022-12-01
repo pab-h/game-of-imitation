@@ -133,7 +133,7 @@ void ajuda() {
 
 void loop() {
     char escolha;
-    char escolhasValidas[] = { 'a', 'b', 'c' };
+    char escolhasValidas[QUANTIDADE_ESCOLHAS] = { 'a', 'b', 'c' };
     char texto[TAMANHO_MAXIMO_STRING + 1];
     char textoCodificado[TAMANHO_MAXIMO_STRING + 1];
     int deslocamento;
