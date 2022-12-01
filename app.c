@@ -101,8 +101,17 @@ void menu() {
     printf("B. Decodificar string com chave;\n");
     printf("C. Sair;\n");
 
-    printf("================\n");
+    printf("================\n\n");
 
+}
+
+void ajuda() {
+    printf("======AJUDA======\n");
+    printf("Lembre-se: O deslocamente deve estar entre 1 e 26;\n");
+    printf("Lembre-se: Os textos pedidos devem ter no máximo 100 caracteres;\n");
+    printf("Lembre-se: O texto a ser codificado deve ter somente letras e espaço;\n");
+    printf("Lembre-se: O texto a ser codificado será convertido para caixa baixa;\n");
+    printf("=================\n\n");
 }
 
 void loop() {
@@ -130,6 +139,7 @@ void loop() {
 
             if (!validaTexto(texto)) {
                 printf("[Erro] O texto \"%s\" não é válido!\n", texto);
+                ajuda();
                 continue;
             }
 
@@ -139,6 +149,7 @@ void loop() {
 
             if (!validaDeslocamento(deslocamento)) {
                 printf("[Erro] O deslocamento \"%d\" não é válido!\n", deslocamento);
+                ajuda();
                 continue;
             }
 
@@ -157,6 +168,7 @@ void loop() {
 
             if (!validaDeslocamento(deslocamento)) {
                 printf("[Erro] O deslocamento \"%d\" não é válido!\n", deslocamento);
+                ajuda();
                 continue;
             }
             
