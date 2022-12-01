@@ -154,15 +154,34 @@ void loop() {
 
         if (escolha == 'b') {
             printf("Digite o texto codificado:\n>>>");
-            scanf(" %s", textoCodificado);
             fgets(textoCodificado, TAMANHO_MAXIMO_STRING, stdin);
             textoCodificado[strlen(textoCodificado) - 1] = 0;
 
             printf("Digite o deslocamento:\n>>>");
             scanf("%d", &deslocamento);
             fgetc(stdin);
+
+            if (!validaDeslocamento(deslocamento)) {
+                printf("[Erro] O deslocamento \"%d\" não é válido!\n", deslocamento);
+                continue;
+            }
+            
+            decodificaTexto(textoCodificado, texto, deslocamento);
+
+            salvaResultado(texto, textoCodificado, deslocamento);
+
+            printf("----Resultado----\n");
+            printf("Texto original: %s\n", texto);
+            printf("Texto codificado: %s\n", textoCodificado);
+            printf("Deslocamento: %d\n", deslocamento);
+            printf("Obs: Os resultados foram gravados em %s\n", ARQUIVO_RESULTADOS);
+            printf("-----------------\n");
+
         }
-        
+
+        memset(texto, 0, TAMANHO_MAXIMO_STRING);
+        memset(textoCodificado, 0, TAMANHO_MAXIMO_STRING);
+
     } while (escolha != 'c');
 }
 
