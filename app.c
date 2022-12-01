@@ -68,6 +68,18 @@ int validaTexto(char *texto) {
     return 1;
 }
 
+int validaEscolha(char escolha, char *escolhasValidas, int tamanhoEscolhasValidas) {
+    for (int i = 0; i < tamanhoEscolhasValidas; i++) {
+        if (escolha == *escolhasValidas) {
+            return 1;
+        }
+
+        escolhasValidas++;
+    }
+
+    return 0;
+}
+
 void codificaTexto(char *texto, char *textoCodificado, const int deslocamento) {
 
     while (*texto != '\0') {
@@ -116,6 +128,7 @@ void ajuda() {
 
 void loop() {
     char escolha;
+    char escolhasValidas[] = { 'a', 'b', 'c' };
     char texto[TAMANHO_MAXIMO_STRING + 1];
     char textoCodificado[TAMANHO_MAXIMO_STRING + 1];
     int deslocamento;
@@ -124,9 +137,14 @@ void loop() {
         menu();
 
         printf("Digite a sua escolha: \n>>>");
-        scanf("%c", &escolha);
+        scanf(" %c", &escolha);
         fgetc(stdin);
         escolha = tolower(escolha);
+
+        if (!validaEscolha(escolha, escolhasValidas, 3)) {
+            printf("[Erro] A escolha \"%c\" não é válida!\n", escolha);
+            continue;
+        }
 
         if (escolha == 'c') {
             break;
