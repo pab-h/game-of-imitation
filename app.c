@@ -12,47 +12,8 @@
 #include <ctype.h>
 #include <string.h>
 
-void salvaResultado(char *texto, char *textoCodificado, const int deslocamento) {
-    FILE *arquivo;
-
-    arquivo = fopen(ARQUIVO_RESULTADOS, "a");
-    
-    if (arquivo == NULL) {
-        arquivo = fopen(ARQUIVO_RESULTADOS, "w");
-    }
-
-    fputs("Texto original: ", arquivo);
-    fputs(texto, arquivo);
-    fputs("\n", arquivo);
-
-    fputs("Texto codificado: ", arquivo);
-    fputs(textoCodificado, arquivo);
-    fputs("\n", arquivo);
-
-    fputs("Chave: ", arquivo);
-    char chave[2]; 
-    snprintf(chave, 3, "%d", deslocamento);
-    fputs(chave, arquivo);
-    fputs("\n", arquivo);
-
-    fputs("+++++++++++++++++++++\n", arquivo);
-
-    fclose(arquivo);
-
-}
-
 int validaDeslocamento(int deslocamento) {
     return deslocamento >= 1 && deslocamento <= TAMANHO_MAXIMO_DESLOCAMENTO;
-}
-
-void caixaBaixaTexto(char *texto) {
-
-    while (*texto != '\0') {
-        *texto = tolower(*texto);
-
-        texto++;
-    }
-
 }
 
 int validaTexto(char *texto) {
@@ -83,6 +44,45 @@ int validaEscolha(char escolha, char *escolhasValidas) {
 
 
     return 0;
+}
+
+void salvaResultado(char *texto, char *textoCodificado, const int deslocamento) {
+    FILE *arquivo;
+
+    arquivo = fopen(ARQUIVO_RESULTADOS, "a");
+    
+    if (arquivo == NULL) {
+        arquivo = fopen(ARQUIVO_RESULTADOS, "w");
+    }
+
+    fputs("Texto original: ", arquivo);
+    fputs(texto, arquivo);
+    fputs("\n", arquivo);
+
+    fputs("Texto codificado: ", arquivo);
+    fputs(textoCodificado, arquivo);
+    fputs("\n", arquivo);
+
+    fputs("Chave: ", arquivo);
+    char chave[2]; 
+    snprintf(chave, 3, "%d", deslocamento);
+    fputs(chave, arquivo);
+    fputs("\n", arquivo);
+
+    fputs("+++++++++++++++++++++\n", arquivo);
+
+    fclose(arquivo);
+
+}
+
+void caixaBaixaTexto(char *texto) {
+
+    while (*texto != '\0') {
+        *texto = tolower(*texto);
+
+        texto++;
+    }
+
 }
 
 void codificaTexto(char *texto, char *textoCodificado, const int deslocamento) {
@@ -129,6 +129,7 @@ void ajuda() {
     printf("Lembre-se: O texto a ser codificado deve ter somente letras e espaço;\n");
     printf("Lembre-se: O texto a ser codificado será convertido para caixa baixa;\n");
     printf("=================\n\n");
+    
 }
 
 void loop() {
@@ -216,16 +217,12 @@ void loop() {
 
 }
 
-int teste() {
-
-    loop();
-
-    return 0;
-}
 
 int main() {
 
     setlocale(LC_ALL, "");
     
-    return teste();
+    loop();
+
+    return 1;
 }
