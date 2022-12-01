@@ -1,7 +1,3 @@
-/* 
-* Segundo requirements.pdf, o máximo tamanho
-* de uma string será 100
-*/
 #define TAMANHO_MAXIMO_STRING 100
 #define TAMANHO_MAXIMO_DESLOCAMENTO 26
 #define ARQUIVO_RESULTADOS "./resultados.txt"
@@ -129,7 +125,7 @@ void ajuda() {
     printf("Lembre-se: O texto a ser codificado deve ter somente letras e espaço;\n");
     printf("Lembre-se: O texto a ser codificado será convertido para caixa baixa;\n");
     printf("=================\n\n");
-    
+
 }
 
 void loop() {
