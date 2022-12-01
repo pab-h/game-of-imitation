@@ -5,6 +5,7 @@
 #define TAMANHO_MAXIMO_STRING 100
 #define TAMANHO_MAXIMO_DESLOCAMENTO 26
 #define ARQUIVO_RESULTADOS "./resultados.txt"
+#define QUANTIDADE_ESCOLHAS 3
 
 #include <locale.h>
 #include <stdio.h>
@@ -68,14 +69,18 @@ int validaTexto(char *texto) {
     return 1;
 }
 
-int validaEscolha(char escolha, char *escolhasValidas, int tamanhoEscolhasValidas) {
-    for (int i = 0; i < tamanhoEscolhasValidas; i++) {
+int validaEscolha(char escolha, char *escolhasValidas) {
+    int i = 0;
+
+    while (i < QUANTIDADE_ESCOLHAS) {
         if (escolha == *escolhasValidas) {
             return 1;
         }
 
         escolhasValidas++;
+        i++;
     }
+
 
     return 0;
 }
@@ -141,7 +146,7 @@ void loop() {
         fgetc(stdin);
         escolha = tolower(escolha);
 
-        if (!validaEscolha(escolha, escolhasValidas, 3)) {
+        if (!validaEscolha(escolha, escolhasValidas)) {
             printf("[Erro] A escolha \"%c\" não é válida!\n", escolha);
             continue;
         }
