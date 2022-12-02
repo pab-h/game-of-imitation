@@ -224,7 +224,7 @@ void loop() {
 }
 
 int main() {
-    setlocale(LC_ALL, "");
+    setlocale(LC_ALL, "Portuguese");
     
     loop();
 
