@@ -115,8 +115,8 @@ void decodificaTexto(char *textoCodificado, char *texto, const int deslocamento)
 void mostraMenu() {
     printf("======MENU======\n");
 
-    printf("A. Codificar string com chave;\n");
-    printf("B. Decodificar string com chave;\n");
+    printf("A. Codificar string com deslocamento;\n");
+    printf("B. Decodificar string com deslocamento;\n");
     printf("C. Sair;\n");
 
     printf("================\n\n");
@@ -125,7 +125,7 @@ void mostraMenu() {
 
 void mostraAjuda() {
     printf("======AJUDA======\n");
-    printf("Lembre-se: O deslocamente deve estar entre 1 e 26;\n");
+    printf("Lembre-se: O deslocamento deve estar entre 1 e 26;\n");
     printf("Lembre-se: Os textos pedidos devem ter no máximo 100 caracteres;\n");
     printf("Lembre-se: O texto a ser codificado deve ter somente letras e espaço;\n");
     printf("Lembre-se: O texto a ser codificado será convertido para caixa baixa;\n");
