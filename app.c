@@ -1,17 +1,27 @@
+// Tamanho máximo da string definido pelo enunciado
 #define TAMANHO_MAXIMO_STRING 100
+
+// Tamanho máximo do deslocamento definido pelo enunciado
 #define TAMANHO_MAXIMO_DESLOCAMENTO 26
+
+// Caminho para o arquivo de resultados
 #define ARQUIVO_RESULTADOS "./resultados.txt"
+
+// Quantidade de escolhas no menu
 #define QUANTIDADE_ESCOLHAS 3
 
+// Bibliotecas necessárias
 #include <locale.h>
 #include <stdio.h>
 #include <ctype.h>
 #include <string.h>
 
+// Verifica se desclocamento está ente 1 e 26
 int validaDeslocamento(int deslocamento) {
     return deslocamento >= 1 && deslocamento <= TAMANHO_MAXIMO_DESLOCAMENTO;
 }
 
+// Verifica, de acordo com o pedido, se texto passado pelo usuário 
 int validaTexto(char *texto) {
 
     while (*texto != '\0') {
@@ -27,6 +37,7 @@ int validaTexto(char *texto) {
     return 1;
 }
 
+// Verifica se a escolha está entre as escolhas válidas
 int validaEscolha(char escolha, char *escolhasValidas) {
     int i = 0;
 
@@ -43,6 +54,12 @@ int validaEscolha(char escolha, char *escolhasValidas) {
     return 0;
 }
 
+// Salva os resultados após um processo
+// Salva no formato:
+// Texto original: <string>
+// Texto codificado: <string>
+// Chave: <int>
+// +++++++++++++++++++++
 void salvaResultado(char *texto, char *textoCodificado, const int deslocamento) {
     FILE *arquivo;
 
@@ -73,6 +90,7 @@ void salvaResultado(char *texto, char *textoCodificado, const int deslocamento) 
 
 }
 
+// Torna o texto passado todo em caixa baixa
 void caixaBaixaTexto(char *texto) {
 
     while (*texto != '\0') {
@@ -84,6 +102,7 @@ void caixaBaixaTexto(char *texto) {
 
 }
 
+// Codifica o texto passado deslocando, no sentido positivo, pela tabela ascii, cada caractere do texto   
 void codificaTexto(char *texto, char *textoCodificado, const int deslocamento) {
 
     while (*texto != '\0') {
@@ -98,6 +117,7 @@ void codificaTexto(char *texto, char *textoCodificado, const int deslocamento) {
 
 }
 
+// Decodifica o texto passado deslocando, no sentido negativo, pela tabela ascii, cada caractere do texto
 void decodificaTexto(char *textoCodificado, char *texto, const int deslocamento) {
 
     while (*textoCodificado != '\0') {
@@ -112,6 +132,7 @@ void decodificaTexto(char *textoCodificado, char *texto, const int deslocamento)
 
 }
 
+// Mostra o menu formatado
 void mostraMenu() {
     printf("======MENU======\n");
 
@@ -123,6 +144,7 @@ void mostraMenu() {
 
 }
 
+// Mostra um menu formatado de ajuda
 void mostraAjuda() {
     printf("======AJUDA======\n");
     printf("Lembre-se: O deslocamento deve estar entre 1 e 26;\n");
@@ -133,6 +155,7 @@ void mostraAjuda() {
 
 }
 
+// Loop do sistema 
 void loop() {
     char escolha;
     char escolhasValidas[QUANTIDADE_ESCOLHAS] = { 'a', 'b', 'c' };
@@ -145,7 +168,7 @@ void loop() {
 
         printf("Digite a sua escolha: \n>>>");
         scanf(" %c", &escolha);
-        fgetc(stdin);
+        fgetc(stdin); // Resolve o bug da leitura fantasma
         escolha = tolower(escolha);
 
         if (!validaEscolha(escolha, escolhasValidas)) {
@@ -161,7 +184,7 @@ void loop() {
         if (escolha == 'a') {
             printf("Digite um texto para codificar:\n>>>");
             fgets(texto, TAMANHO_MAXIMO_STRING, stdin);
-            texto[strlen(texto) - 1] = 0;
+            texto[strlen(texto) - 1] = 0; // Retira-se o \n 
 
             if (!validaTexto(texto)) {
                 printf("[Erro] O texto \"%s\" não é válido!\n", texto);
@@ -174,7 +197,7 @@ void loop() {
 
             printf("Digite o deslocamento:\n>>>");
             scanf("%d", &deslocamento);
-            fgetc(stdin);
+            fgetc(stdin); // Resolve o bug da leitura fantasma
 
             if (!validaDeslocamento(deslocamento)) {
                 printf("[Erro] O deslocamento \"%d\" não é válido!\n", deslocamento);
@@ -190,11 +213,11 @@ void loop() {
         if (escolha == 'b') {
             printf("Digite o texto codificado:\n>>>");
             fgets(textoCodificado, TAMANHO_MAXIMO_STRING, stdin);
-            textoCodificado[strlen(textoCodificado) - 1] = 0;
+            textoCodificado[strlen(textoCodificado) - 1] = 0; // Retira-se o \n 
 
             printf("Digite o deslocamento:\n>>>");
             scanf("%d", &deslocamento);
-            fgetc(stdin);
+            fgetc(stdin); // Resolve o bug da leitura fantasma
 
             if (!validaDeslocamento(deslocamento)) {
                 printf("[Erro] O deslocamento \"%d\" não é válido!\n", deslocamento);
@@ -216,6 +239,7 @@ void loop() {
         printf("Obs: Os resultados foram gravados em %s\n", ARQUIVO_RESULTADOS);
         printf("-----------------\n");
 
+        // Limpa os textos para evitar erros
         memset(texto, 0, TAMANHO_MAXIMO_STRING);
         memset(textoCodificado, 0, TAMANHO_MAXIMO_STRING);
 
